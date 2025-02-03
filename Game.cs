@@ -56,8 +56,8 @@ class Game
             Console.Clear();
             Console.WriteLine("=== 메인 메뉴 ===");
             Console.WriteLine("1. 상태 확인");
-            Console.WriteLine("2. 전투 시작");
-            Console.WriteLine("3. 아이템 사용");
+            Console.WriteLine("2. 게임 시작");
+            Console.WriteLine("3. 인벤토리");
             Console.WriteLine("4. 탐험");
             Console.WriteLine("5. 퀘스트 확인");
             Console.WriteLine("6. 종료");
@@ -74,7 +74,7 @@ class Game
                     Battle();
                     break;
                 case "3":
-                    ShowInventory();
+                    ShowInventory(GetPlayer());
                     break;
                 case "4":
                     Explore();
@@ -97,45 +97,66 @@ class Game
         Enemy enemy = new Enemy("고블린", 20, 5, 10,1);
         BattleManager.StartBattle(player, enemy, quests);
     }
-    public void ShowInventory()
-    {
-        player.Inventory.ShowItems();  // 인벤토리 출력
-        Console.WriteLine("아이템을 사용하려면 번호를 입력하세요. (0으로 돌아가기)");
-        int choice = int.Parse(Console.ReadLine()) - 1;
 
-        if (choice >= 0)
+    public Player GetPlayer()
+    {
+        return player;
+    }
+
+    public void ShowInventory(Player player)
+    {
+        while (true)
         {
-            player.Inventory.UseItem(choice, player);  // 아이템 사용
-        }
-        else
-        {
-            Console.WriteLine("돌아갑니다.");
+            Console.Clear();
+            Console.WriteLine("[아이템 목록]");
+            player.Inventory.ShowItems();  // 플레이어의 인벤토리 아이템 출력
+            Console.WriteLine("\n1. 장착 관리");
+            Console.WriteLine("0. 나가기");
+
+            Console.Write("원하시는 행동을 입력해주세요: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    player.Inventory.EquipManger(player);  // 장착 관리
+                    break;
+                case 0:
+                    Console.WriteLine("인벤토리 메뉴를 종료합니다.");
+                    return;  // 인벤토리 종료
+                default:
+                    Console.WriteLine("잘못된 입력입니다.");
+                    break;
+            }
+            Console.WriteLine("계속하려면 엔터를 누르세요...");
+            Console.ReadLine();
         }
     }
+
 
     private void Explore()
-    {
-        Console.WriteLine("탐험할 지역을 선택하세요:");
-        map.ShowLocations();
-        Console.Write("선택: ");
-        string choice = Console.ReadLine();
-
-        Location location = map.GetLocation(choice);
-        if (location != null)
         {
-            Console.WriteLine($"{location.Name} 지역을 탐험합니다...");
-            Console.WriteLine(location.Description);
+            Console.WriteLine("탐험할 지역을 선택하세요:");
+            map.ShowLocations();
+            Console.Write("선택: ");
+            string choice = Console.ReadLine();
 
-            if (location.HasEnemy)
+            Location location = map.GetLocation(choice);
+            if (location != null)
             {
-                Battle();
+                Console.WriteLine($"{location.Name} 지역을 탐험합니다...");
+                Console.WriteLine(location.Description);
+
+                if (location.HasEnemy)
+                {
+                    Battle();
+                }
+            }
+            else
+            {
+                Console.WriteLine("잘못된 지역 선택입니다.");
             }
         }
-        else
-        {
-            Console.WriteLine("잘못된 지역 선택입니다.");
-        }
-    }
 
     private void ShowQuests()
     {

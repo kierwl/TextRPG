@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Textrpg
 {
+    
     internal class Inventory
     {
         private List<Item> items = new List<Item>();
-
+        private Player player;
         public Inventory()
         {
             items = new List<Item>();
@@ -61,5 +63,32 @@ namespace Textrpg
                 }
             }
         }
+
+        public void EquipManger(Player player)
+        {
+            Console.WriteLine("\n[장착 관리]");
+            Console.WriteLine("1. 장착 아이템 확인");
+            Console.WriteLine("2. 장착 해제");
+            Console.WriteLine("0. 돌아가기");
+
+            int choice = int.Parse(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine($"현재 장착된 아이템: {player.EquippedItem?.Name ?? "없음"}");
+                    break;
+                case 2:
+                    player.EquippedItem = null;
+                    Console.WriteLine("아이템 장착을 해제했습니다.");
+                    break;
+                case 0:
+                    Console.WriteLine("장착 관리 메뉴에서 나갑니다.");
+                    break;
+                default:
+                    Console.WriteLine("잘못된 입력입니다.");
+                    break;
+            }
+        }
     }
 }
+

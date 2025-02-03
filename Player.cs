@@ -12,6 +12,7 @@ class Player
     public int Defense { get;  set; }
     public Job job { get;  set; }
     public Inventory Inventory { get; private set; }
+    public Item EquippedItem { get; set; } // 장착된 아이템
     public Player(string name, Job job)
     {
         Name = name;
@@ -23,6 +24,7 @@ class Player
         Defense = 2;
         this.job = job;
         Inventory = new Inventory();  // 인벤토리 초기화
+        EquippedItem = null;
 
     }
 
