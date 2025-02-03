@@ -1,4 +1,9 @@
 using System;
+using Textrpg;
+
+
+
+
 
 class StatusWindow
 {
@@ -7,6 +12,7 @@ class StatusWindow
         Console.Clear();
         Console.WriteLine("=== 상태창 ===");
         Console.WriteLine($"이름: {player.Name}");
+        Console.WriteLine($"직업: {player.job}");
         Console.WriteLine($"레벨: {player.Level}");
         Console.WriteLine($"체력: {player.Health}");
         Console.WriteLine($"공격력: {player.AttackPower}");
