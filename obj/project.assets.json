@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\Cpratice\\TextRPG\\Textrpg\\Textrpg\\Textrpg.csproj",
+      "projectUniqueName": "A:\\Cpratice\\textgame\\TextRPG\\Textrpg.csproj",
       "projectName": "Textrpg",
-      "projectPath": "A:\\Cpratice\\TextRPG\\Textrpg\\Textrpg\\Textrpg.csproj",
+      "projectPath": "A:\\Cpratice\\textgame\\TextRPG\\Textrpg.csproj",
       "packagesPath": "C:\\Users\\berry\\.nuget\\packages\\",
-      "outputPath": "A:\\Cpratice\\TextRPG\\Textrpg\\Textrpg\\obj\\",
+      "outputPath": "A:\\Cpratice\\textgame\\TextRPG\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

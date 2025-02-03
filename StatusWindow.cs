@@ -10,6 +10,7 @@ class StatusWindow
         Console.WriteLine($"레벨: {player.Level}");
         Console.WriteLine($"체력: {player.Health}");
         Console.WriteLine($"공격력: {player.AttackPower}");
+        Console.WriteLine($"방어력: {player.Defense}");
         Console.WriteLine($"경험치: {player.Experience}/{player.ExpToNextLevel}");
         Console.WriteLine("=================");
         Console.ReadLine();

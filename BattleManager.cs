@@ -7,7 +7,7 @@ namespace Textrpg
     {
         public static void StartBattle(Player player, Enemy enemy, List<Quest> quests)
         {
-            Console.WriteLine($"⚔️ 전투 시작! {enemy.Name}이(가) 등장했다!");
+            Console.WriteLine($"⚔️⚔️⚔️ 전투 시작! {enemy.Name}이(가) 등장했다!");
             DisplayBattleStatus(player, enemy);
 
             while (player.Health > 0 && enemy.Health > 0)
