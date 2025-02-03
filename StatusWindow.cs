@@ -13,6 +13,14 @@ class StatusWindow
         Console.WriteLine($"방어력: {player.Defense}");
         Console.WriteLine($"경험치: {player.Experience}/{player.ExpToNextLevel}");
         Console.WriteLine("=================");
-        Console.ReadLine();
+        Console.WriteLine("0. 나가기");
+        Console.WriteLine("=================");
+        Console.Write("원하시는 행동을 입력해주세요. >> ");
+
+        string input = Console.ReadLine();
+        if (input == "0")
+        {
+            return; // 상태 보기 종료
+        }
     }
 }
