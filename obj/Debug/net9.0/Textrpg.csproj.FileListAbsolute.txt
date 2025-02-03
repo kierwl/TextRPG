@@ -1,0 +1,14 @@
+A:\Cpratice\TextRPG\Textrpg\Textrpg\bin\Debug\net9.0\Textrpg.exe
+A:\Cpratice\TextRPG\Textrpg\Textrpg\bin\Debug\net9.0\Textrpg.deps.json
+A:\Cpratice\TextRPG\Textrpg\Textrpg\bin\Debug\net9.0\Textrpg.runtimeconfig.json
+A:\Cpratice\TextRPG\Textrpg\Textrpg\bin\Debug\net9.0\Textrpg.dll
+A:\Cpratice\TextRPG\Textrpg\Textrpg\bin\Debug\net9.0\Textrpg.pdb
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\Textrpg.GeneratedMSBuildEditorConfig.editorconfig
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\Textrpg.AssemblyInfoInputs.cache
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\Textrpg.AssemblyInfo.cs
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\Textrpg.csproj.CoreCompileInputs.cache
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\Textrpg.dll
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\refint\Textrpg.dll
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\Textrpg.pdb
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\Textrpg.genruntimeconfig.cache
+A:\Cpratice\TextRPG\Textrpg\Textrpg\obj\Debug\net9.0\ref\Textrpg.dll
