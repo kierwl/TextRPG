@@ -72,7 +72,7 @@ class Game
     public void Battle()
     {
         Enemy enemy = new Enemy("°íºí¸°", 20, 5, 10, 1);
-        BattleManager.StartBattle(Player, enemy, Quests);
+        BattleManager.StartBattle(Player, enemy, Quests, StatusWindow);
     }
 
     public Player GetPlayer()

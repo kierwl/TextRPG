@@ -5,6 +5,7 @@ class Player
 {
     public string Name { get; private set; }
     public int Health { get;  set; }
+    public int MaxHP { get;  set; }
     public int AttackPower { get;  set; }
     public int Level { get; private set; }
     public int Experience { get; private set; }
@@ -18,6 +19,7 @@ class Player
     {
         Name = name;
         Health = 100 + job.HealthBonus; ;
+        MaxHP = Health;
         AttackPower = 10 + job.AttackBonus;
         Level = 1;
         Experience = 0;

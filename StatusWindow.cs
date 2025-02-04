@@ -10,6 +10,7 @@ class StatusWindow
 {
     public void Show(Player player)
     {
+        var totalStats = GetTotalStats(player);
         int displayatk = player.AttackPower;
         int displaydef = player.Defense;
         int displayhp = player.Health;
@@ -27,7 +28,7 @@ class StatusWindow
         Console.WriteLine($"레벨: {player.Level}");
         Console.WriteLine($"Gold : {player.Gold}");
 
-        Console.WriteLine($"체력: {displayhp}(+{displayhp - player.Health})");
+        Console.WriteLine($"체력: {player.MaxHP}(+{displayhp - player.Health})");
         Console.WriteLine($"공격력: {displayatk}(+{displayatk - player.AttackPower})");
         Console.WriteLine($"방어력: {displaydef}(+{displaydef - player.Defense})");
         Console.WriteLine($"경험치: {player.Experience}/{player.ExpToNextLevel}");
@@ -60,4 +61,23 @@ class StatusWindow
             return; // 상태 보기 종료
         }
     }
+
+    public (int AttackPower, int Defense, int Health) GetTotalStats(Player player)
+    {
+        int totalAtk = player.AttackPower;
+        int totalDef = player.Defense;
+        int totalHp = player.Health;
+
+        foreach (var item in player.Inventory.GetEquippedItems())
+        {
+            totalAtk += item.AttackValue;
+            totalDef += item.DefenseValue;
+            totalHp += item.HealthValue;
+        }
+
+        return (totalAtk, totalDef, totalHp);
+    }
 }
+
+    
+

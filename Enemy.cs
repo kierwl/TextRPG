@@ -3,9 +3,9 @@ using System;
 class Enemy
 {
     public string Name { get; private set; }
-    public int Health { get; private set; }
-    public int AttackPower { get; private set; }
-    public int Defense { get; private set; }    
+    public int Health { get;  set; }
+    public int AttackPower { get;  set; }
+    public int Defense { get;  set; }    
     public int ExpReward { get; private set; }
 
     public Enemy(string name, int health, int attackPower, int expReward, int defense)
