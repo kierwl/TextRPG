@@ -5,13 +5,15 @@ class Enemy
     public string Name { get; private set; }
     public int Health { get; private set; }
     public int AttackPower { get; private set; }
+    public int Defense { get; private set; }    
     public int ExpReward { get; private set; }
 
-    public Enemy(string name, int health, int attackPower, int expReward)
+    public Enemy(string name, int health, int attackPower, int expReward, int defense)
     {
         Name = name;
         Health = health;
         AttackPower = attackPower;
+        Defense = defense;
         ExpReward = expReward;
     }
 
