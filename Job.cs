@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,7 +30,7 @@ namespace Textrpg
                         HealthBonus = 20;
                         AttackBonus = 5;
                         DefenseBonus = 3;
-                        break;
+                    break;
                     case JobType.Mage:
                         Name = "마법사";
                         HealthBonus = 10;

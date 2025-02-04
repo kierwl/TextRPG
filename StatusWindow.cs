@@ -25,6 +25,8 @@ class StatusWindow
         Console.WriteLine($"이름: {player.Name}");
         Console.WriteLine($"직업: {player.job.Name}");
         Console.WriteLine($"레벨: {player.Level}");
+        Console.WriteLine($"Gold : {player.Gold}");
+
         Console.WriteLine($"체력: {displayhp}(+{displayhp - player.Health})");
         Console.WriteLine($"공격력: {displayatk}(+{displayatk - player.AttackPower})");
         Console.WriteLine($"방어력: {displaydef}(+{displaydef - player.Defense})");

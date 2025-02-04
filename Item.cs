@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Textrpg
 {
@@ -16,8 +17,11 @@ namespace Textrpg
         public int DefenseValue { get; }
         public int HealthValue { get; }
         public int SpeedValue { get; }
-        
-        public Item(string name, string description, ItemType type, int atkvalue, int defvalue, int spdvalue, int hpvalue)
+        public int Price { get; set; } // 아이템 가격
+        public bool IsPurchased { get; set; } // 아이템 구매 여부
+
+
+        public Item(string name, string description, ItemType type, int atkvalue, int defvalue, int spdvalue, int hpvalue, int price)
         {
             Name = name;
             Description = description;
@@ -26,9 +30,41 @@ namespace Textrpg
             DefenseValue = defvalue;
             SpeedValue = spdvalue;
             HealthValue = hpvalue;
-            
+            Price = price;
+            IsPurchased = false;
+
         }
-        
+        // 📌 복사 생성자 추가
+        public Item(Item other)
+        {
+            Name = other.Name;
+            Description = other.Description;
+            Type = other.Type;
+            AttackValue = other.AttackValue;
+            DefenseValue = other.DefenseValue;
+            SpeedValue = other.SpeedValue;
+            HealthValue = other.HealthValue;
+            Price = other.Price;
+            IsPurchased = false; // 새로 생성된 아이템은 구매되지 않은 상태로 설정
+        }
+
+        public void Purchase(Player player)
+        {
+            if (player == null)
+            {
+                Console.WriteLine("플레이어가 없습니다.");
+                return;
+            }
+            if (player.Gold < Price)
+            {
+                Console.WriteLine("골드가 부족합니다.");
+                return;
+            }
+            player.Gold -= Price;
+            IsPurchased = true;
+            Console.WriteLine($"{Name}을(를) 구매하였습니다.");
+        }
+
         public void Use(Player player)
         {
             if (player == null)
