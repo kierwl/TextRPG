@@ -6,7 +6,7 @@ class Game
     private StatusWindow statusWindow;
     private List<Quest> quests;
     private Map map;
-
+    private Inventory inventory;
     public void Start()
     {
         Console.WriteLine("텍스트 RPG에 오신 것을 환영합니다!");
@@ -16,9 +16,11 @@ class Game
         Job job = SelectJob();  // 직업 선택
         player = new Player(name, job);  // 직업에 맞게 플레이어 생성
         statusWindow = new StatusWindow();
+        //생성된 Player 객체를 Inventory에 전달
+        inventory = new Inventory(player);
 
-        player.Inventory.AddItem(new Item("체력 포션", "체력을 50 회복하는 포션", ItemType.Potion, 50));
-        player.Inventory.AddItem(new Item("철검", "기본적인 철검", ItemType.Weapon, 10));
+        player.Inventory.AddItem(new Item("체력 포션", "체력을 50 회복하는 포션", ItemType.Potion, 0,0,0,50));
+        player.Inventory.AddItem(new Item("철검", "기본적인 철검", ItemType.Weapon, 10,0,0,0));
 
         map = new Map();
         quests = new List<Quest>
@@ -119,7 +121,7 @@ class Game
             switch (choice)
             {
                 case 1:
-                    player.Inventory.EquipManger(player);  // 장착 관리
+                    player.Inventory.EquipManager(player);  // 장착 관리
                     break;
                 case 0:
                     Console.WriteLine("인벤토리 메뉴를 종료합니다.");

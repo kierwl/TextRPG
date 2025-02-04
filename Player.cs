@@ -10,21 +10,21 @@ class Player
     public int Experience { get; private set; }
     public int ExpToNextLevel { get; private set; }
     public int Defense { get;  set; }
-    public Job job { get;  set; }
+    public Job job { get; private set; }
     public Inventory Inventory { get; private set; }
-    public Item EquippedItem { get; set; } // 장착된 아이템
+    public List<Item> equippedItem { get; set; } // 장착된 아이템
     public Player(string name, Job job)
     {
         Name = name;
-        Health = 100;
-        AttackPower = 10;
+        Health = 100 + job.HealthBonus; ;
+        AttackPower = 10 + job.AttackBonus;
         Level = 1;
         Experience = 0;
         ExpToNextLevel = 20;
-        Defense = 2;
+        Defense = 5 + job.DefenseBonus;
         this.job = job;
-        Inventory = new Inventory();  // 인벤토리 초기화
-        EquippedItem = null;
+        Inventory = new Inventory(this);  // 인벤토리 초기화
+        equippedItem = new List<Item>(); 
 
     }
 
