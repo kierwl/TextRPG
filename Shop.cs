@@ -20,9 +20,9 @@ namespace Textrpg
                     {
                         new Item("강철 검", "강철로 만들어진 검", ItemType.Weapon, 10, 0, 0, 0, 400),
                         new Item("강철 갑옷", "강철로 만들어진 갑옷", ItemType.Armor, 0, 10, 0, 0, 500),
-                        new Item("체력 물약", "최대 체력을 50 증가시켜주는 물약", ItemType.Potion, 0, 0, 0, 50, 5000),
+                        new Item("체력 물약", "체력을 50 증가시켜주는 물약", ItemType.Potion, 0, 0, 0, 50, 5000),
                         new Item("가시 갑옷", "철갑에 가시를 두른 갑옷이다..", ItemType.Armor, 2, 15, 0, 50, 1000),
-                        new Item("낡은 놋쇠 단검", "부식되어 쓸만한 상태는 아니다.", ItemType.Weapon, 3, 0, 0, 50, 100)
+                        new Item("낡은 놋쇠 단검", "부식되어 쓸만한 상태는 아니다.", ItemType.Weapon, 300, 0, 0, 50, 100)
                     };
         }
 
