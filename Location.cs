@@ -4,7 +4,7 @@ class Location
 {
     public string Name { get; }
     public string Description { get; }
-    public bool HasEnemy { get; }
+    public bool HasEnemy { get; set; }
 
     public Location(string name, string description, bool hasEnemy)
     {

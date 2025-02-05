@@ -15,6 +15,7 @@ class Player
     public Job job { get; private set; }
     public Inventory Inventory { get; private set; }
     public List<Item> equippedItem { get; set; } // 장착된 아이템
+    public List<Quest> quests { get; set; } // 퀘스트 목록
     public Player(string name, Job job)
     {
         Name = name;
@@ -28,6 +29,7 @@ class Player
         this.job = job;
         Inventory = new Inventory(this);  // 인벤토리 초기화
         equippedItem = new List<Item>();
+        quests = new List<Quest>();
         Gold = 1000;
 
     }
@@ -48,9 +50,9 @@ class Player
     {
         Experience -= ExpToNextLevel;
         Level++;
-        ExpToNextLevel += 20;
-        AttackPower += 5;
-        Defense += 2;
+        ExpToNextLevel += 25;
+        AttackPower += 1;
+        Defense += 1;
         Health = 100;
         Console.WriteLine($"레벨 업! 현재 레벨: {Level}, 공격력 증가: {AttackPower}");
     }

@@ -9,7 +9,7 @@ namespace Textrpg
 {
  
     
-        enum JobType { Warrior, Mage, Archer }
+        enum JobType { Warrior, Mage, Archer,Sparta, 무직백수 }
 
         class Job
         {
@@ -43,8 +43,15 @@ namespace Textrpg
                         AttackBonus = 7;
                         DefenseBonus = 2;
                         break;
-                    default:
-                        Name = "무직 백수";
+
+                    case JobType.Sparta:
+                        Name = "스파르타";
+                        HealthBonus = 20;
+                        AttackBonus = 55;
+                        DefenseBonus = -100;
+                        break;
+                default:
+                        Name = "무직백수";
                         HealthBonus = 0;
                         AttackBonus = 0;
                         DefenseBonus = 0;
