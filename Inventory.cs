@@ -29,6 +29,10 @@ namespace Textrpg
         {
             return equippedItem;
         }
+        public List<Item> GetItems()
+        {
+            return items;
+        }
 
 
         // 아이템 추가
@@ -79,22 +83,25 @@ namespace Textrpg
 
             if (item.Type == ItemType.Weapon || item.Type == ItemType.Armor)
             {
-                if (!equippedItem.Contains(item))
+                // 같은 타입의 아이템이 이미 장착되어 있으면 해제 후 장착
+                Item? equippedSameType = equippedItem.FirstOrDefault(e => e.Type == item.Type);
+                if (equippedSameType != null)
                 {
-                    equippedItem.Add(item);
-                    item.Equip(player);
-                    
+                    UnequipItem(equippedItem.IndexOf(equippedSameType));
                 }
-                else
-                {
-                    Console.WriteLine($"{item.Name}은(는) 이미 장착 중입니다.");
-                }
+
+                equippedItem.Add(item);
+                items.Remove(item); // 인벤토리에서 제거
+                item.Equip(player);
+                Console.WriteLine($"{item.Name}을(를) 장착했습니다.");
             }
             else
             {
                 Console.WriteLine("이 아이템은 장착할 수 없습니다.");
             }
         }
+
+        // 장비 해제
         public void UnequipItem(int index)
         {
             if (index < 0 || index >= equippedItem.Count)
@@ -104,8 +111,10 @@ namespace Textrpg
             }
 
             Item item = equippedItem[index];
-            equippedItem.Remove(item);
+            equippedItem.RemoveAt(index);
+            items.Add(item); // 인벤토리에 다시 추가
             item.Unequip(player);
+            Console.WriteLine($"{item.Name}을(를) 해제하여 인벤토리에 추가했습니다.");
         }
 
         // 아이템 목록 출력

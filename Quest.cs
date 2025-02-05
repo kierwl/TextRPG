@@ -17,12 +17,12 @@ class Quest
             Progress++;
         }
     }
-    public Quest(string title, string description, int goal, string target)
+    public Quest(string title, string description, int goal, string target,int reward)// »ý¼ºÀÚ
     {
         Title = title;
         Description = description;
         Goal = goal;
         Target = target;
-        Reward = 50;
+        Reward = reward;
     }
 }

@@ -8,6 +8,7 @@ class Game
     public Map Map { get; private set; }
     public Shop Shop { get; private set; }
     public Inventory Inventory { get; private set; }
+    public Location location { get; private set; }
 
     private MenuManager menuManager;
     private ExplorationManager explorationManager;
@@ -24,14 +25,14 @@ class Game
         //생성된 Player 객체를 Inventory에 전달
         Inventory = new Inventory(Player);
 
-        Player.Inventory.AddItem(new Item("체력 포션", "체력을 50 회복하는 포션", ItemType.Potion, 0, 0, 0, 50, 0));
+        Player.Inventory.AddItem(new Item("체력 포션", "체력을 50 회복하는 포션", ItemType.Potion, 0, 0, 0, 50, 0)); // 기본 지급 아이템
         Player.Inventory.AddItem(new Item("철검", "기본적인 철검", ItemType.Weapon, 10, 0, 0, 0, 0));
 
         Map = new Map();
         Quests = new List<Quest>
         {
-            new Quest("고블린 사냥", "고블린 3마리를 처치하라", 3, "고블린"),
-            new Quest("숲 탐험", "숲 지역을 탐험하라", 1, "숲")
+            new Quest("고블린 사냥", "고블린 3마리를 처치하라", 3, "고블린", 100),
+            new Quest("숲 탐험", "숲 지역을 탐험하라", 1, "숲", 100)
         };
         // Shop 객체 초기화
         Shop = new Shop(Player);
@@ -56,9 +57,11 @@ class Game
             case "1": return new Job(JobType.Warrior);
             case "2": return new Job(JobType.Mage);
             case "3": return new Job(JobType.Archer);
+            case "4": return new Job(JobType.Sparta);
             default:
-                Console.WriteLine("잘못된 선택입니다. 기본 직업(전사)으로 설정됩니다.");
-                return new Job(JobType.Warrior);  // 기본 직업으로 전사 선택
+                Console.WriteLine("잘못된 선택입니다. 기본 직업으로 설정됩니다.");
+                return new Job(JobType.무직백수);  // 기본 직업으로 **** 선택
+                Console.ReadLine();
         }
     }
 
@@ -69,10 +72,10 @@ class Game
         Console.ReadLine();
     }
 
-    public void Battle()
+    public void Battle(Enemy enemy)
     {
-        Enemy enemy = new Enemy("고블린", 20, 5, 10, 1);
-        BattleManager.StartBattle(Player, enemy, Quests);
+        
+        BattleManager.StartBattle(Player, enemy, Quests, StatusWindow,explorationManager,location);
     }
 
     public Player GetPlayer()
