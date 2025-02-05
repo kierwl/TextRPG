@@ -6,6 +6,7 @@ class ExplorationManager
     private Game game;
     public static Random random = new Random();
     private Player player;
+    public Location LastVisitedLocation;
     public ExplorationManager(Game game)
     {
         this.game = game;
@@ -21,10 +22,23 @@ class ExplorationManager
         string choice = Console.ReadLine();
 
         Location location = game.Map.GetLocation(choice);
-        if (location != null)
+
+        if (location == null)
         {
-            Console.WriteLine($"{location.Name} 지역을 탐험합니다...");
-            Console.WriteLine(location.Description);
+            if (LastVisitedLocation != null)
+            {
+                Console.WriteLine($"이전 지역({LastVisitedLocation.Name})으로 돌아갑니다...");
+                location = LastVisitedLocation;
+            }
+            else
+            {
+                Console.WriteLine("마을로 돌아갑니다...");
+                location = game.Map.GetLocation("마을");
+            }
+        }
+        LastVisitedLocation = location;
+        Console.WriteLine($"{location.Name} 지역을 탐험합니다...");
+        Console.WriteLine(location.Description);
 
             switch (location.Name)
             {
@@ -47,11 +61,8 @@ class ExplorationManager
                     break;
             }
         }
-        else
-        {
-            Console.WriteLine("잘못된 지역 선택입니다.");
-        }
-    }
+        
+    
 
     private void ExploreVillage(Location location)
     {
@@ -155,7 +166,7 @@ class ExplorationManager
         }
 
         Console.WriteLine("숲에서 무언가 발견 할 수 있습니다.");
-
+        LastVisitedLocation = location;
         if (location.HasEnemy)
         {
             Enemy enemy = MonsterList.GetRandomMonster();
@@ -207,6 +218,7 @@ class ExplorationManager
             BattleManager.NextStage(game.Player, this, location);
 
         }
+        LastVisitedLocation = location;
 
         if (location.HasEnemy)
         {
@@ -227,10 +239,10 @@ class ExplorationManager
         // 수락 가능한 퀘스트 목록
         List<Quest> availableQuests = new List<Quest>
     {
-        new Quest("숲 속의 괴물", "숲 속에 나타난 괴물을 처치해주세요.", 500, "코볼트", 100),
-        new Quest("잃어버린 반지", "마을 주민이 잃어버린 반지를 찾아주세요.", 300, "반지",100),
-        new Quest("오크 두목 처치", "마을 근처 오크 두목을 처치하세요.", 1000, "오크", 100),
-        new Quest("고대 유물 탐색", "던전 깊은 곳에서 고대 유물을 발견하세요.", 1500, "던전",100)
+        new Quest("숲 속의 괴물", "숲 속에 나타난 괴물을 처치해주세요.", 5, "코볼트", 100),
+        new Quest("잃어버린 반지", "마을 주민이 잃어버린 반지를 찾아주세요.", 1, "반지",100),
+        new Quest("오크 두목 처치", "마을 근처 오크 두목을 처치하세요.", 10, "오크", 100),
+        new Quest("고대 유물 탐색", "던전 깊은 곳에서 고대 유물을 발견하세요.", 1, "던전",100)
     };
 
         // 현재 수락한 퀘스트 목록 (Game 클래스에서 관리)
@@ -353,7 +365,7 @@ class ExplorationManager
             Console.WriteLine("\n던전 공략에 실패했습니다!");
             int healthLoss = player.Health / 2;
             player.Health -= healthLoss;
-            Console.WriteLine($"체력이 절반 감소하였습니다! 현재 체력: {player.MaxHP}/{player.MaxHP}");
+            Console.WriteLine($"체력이 절반 감소하였습니다! 현재 체력: {player.Health}/{player.MaxHP}");
             Console.ReadLine();
             return;
         }

@@ -25,6 +25,9 @@ class Enemy
 
     public virtual void Attack(Player player) // virtual 키워드 추가
     {
-        Console.WriteLine($"{Name}이(가) {player.Name}을(를) 공격했다! {AttackPower}의 피해를 입혔다.");
+        int damage = Math.Max(0, AttackPower - player.Defense);
+        player.Health -= damage;
+        Console.WriteLine($"{Name}이(가) {player.Name}을(를) 공격했다! {damage}의 피해를 입혔다.");
+        
     }
 }

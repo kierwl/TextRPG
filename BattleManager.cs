@@ -31,10 +31,10 @@ namespace Textrpg
 
                 if (enemy.Health > 0)
                 {
-                    int enemyDamage = Math.Max(0, enemy.AttackPower - player.Defense);
-                    player.Health -= enemyDamage;
+                    enemy.Attack(player);
+                   
 
-                    Console.WriteLine($" {enemy.Name}이(가) {player.Name}을(를) 공격했다! {enemyDamage}의 피해를 입었다. (현재 체력: {Math.Max(0, player.Health)})");
+                    Console.WriteLine($"(플레이어의 현재 체력: {Math.Max(0, player.Health)})");
                 }
             }
 
@@ -56,7 +56,7 @@ namespace Textrpg
                     var totalStats = statusWindow.GetTotalStats(player);
                     int totalAttack = totalStats.AttackPower;
 
-                    int damageDealt = Math.Max(0, totalAttack - enemy.Defense);
+                    int damageDealt = Math.Max(1, totalAttack - enemy.Defense);
                     enemy.Health -= damageDealt;
 
                     Console.WriteLine($" {player.Name}이(가) {enemy.Name}을(를) 공격! {damageDealt}의 피해를 입혔다. (적 체력: {Math.Max(0, enemy.Health)})");
@@ -65,13 +65,13 @@ namespace Textrpg
                 else if (action == "2")
                 {
                     Console.WriteLine(" 도망쳤다!");
-                    Console.ReadLine();
+                    
                     return false; // 전투 종료
                 }
                 else
                 {
                     Console.WriteLine("! 잘못된 입력입니다. 다시 입력해주세요.");
-                    Console.ReadLine();
+                    
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace Textrpg
             else if (enemy.Health <= 0)
             {
                 Console.WriteLine($" 승리하였습니다! 경험치 {enemy.ExpReward} 획득!");
-                Console.ReadLine();
+                
                 player.GainExp(enemy.ExpReward);
                 UpdateQuestProgress(enemy, quests);
             }
@@ -119,10 +119,10 @@ namespace Textrpg
             }
         }
 
-        private static void RemoveQuests(List<Quest> quests)
+        /*private static void RemoveQuests(List<Quest> quests)
         {
             quests.RemoveAll(quest => quest.IsCompleted);
-        }
+        }*/ // 쓰고있는줄 알았는데 없이도 작동해서 혹시몰라 주석처리
 
         private static void DisplayBattleStatus(Player player, Enemy enemy, StatusWindow statusWindow)
         {
@@ -136,9 +136,22 @@ namespace Textrpg
         {
             if (location == null)
             {
-                Console.WriteLine("마을로 돌아갑니다...");
-                Console.Write("입력 >> ");
+                location = explorationManager.LastVisitedLocation;
 
+                if (explorationManager.LastVisitedLocation != null)
+                {
+                    Console.WriteLine($"이전 지역({explorationManager.LastVisitedLocation.Name})으로 돌아갑니다...");
+                    location = explorationManager.LastVisitedLocation;
+                }
+                else
+                {
+                    Console.WriteLine("마을로 돌아갑니다...");
+                    explorationManager.Explore();
+                }
+            }
+            else
+            {
+                Console.WriteLine("앞으로 나아갑니다.");
                 return;
             }
 
